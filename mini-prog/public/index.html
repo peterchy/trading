@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>巴菲特 · 金融管家</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #f5f5f5;
+  --card: #ffffff;
+  --primary: #1a73e8;
+  --text: #1a1a1a;
+  --text2: #666;
+  --user-bg: #1a73e8;
+  --user-text: #fff;
+  --bot-bg: #e8e8e8;
+  --bot-text: #1a1a1a;
+  --border: #e0e0e0;
+  --shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.container {
+  width: 100%;
+  max-width: 420px;
+  height: 100vh;
+  max-height: 780px;
+  background: var(--card);
+  border-radius: 0;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+@media (min-width: 500px) {
+  .container { border-radius: 16px; height: 90vh; }
+}
+
+/* Header */
+.header {
+  background: var(--primary);
+  color: #fff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.header .avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.header h1 { font-size: 16px; font-weight: 600; }
+.header .sub { font-size: 11px; opacity: .8; margin-top: 2px; }
+
+/* Messages */
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+}
+.msg {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  line-height: 1.5;
+  font-size: 14px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  animation: fadeIn .25s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.msg.user {
+  align-self: flex-end;
+  background: var(--user-bg);
+  color: var(--user-text);
+  border-bottom-right-radius: 4px;
+}
+.msg.bot {
+  align-self: flex-start;
+  background: var(--bot-bg);
+  color: var(--bot-text);
+  border-bottom-left-radius: 4px;
+}
+.msg.bot.typing::after {
+  content: '▊';
+  animation: blink .8s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+.msg .time {
+  font-size: 10px;
+  opacity: .5;
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* Welcome */
+.welcome {
+  text-align: center;
+  padding: 40px 20px 20px;
+  color: var(--text2);
+}
+.welcome .icon { font-size: 48px; margin-bottom: 12px; }
+.welcome h2 { font-size: 16px; color: var(--text); margin-bottom: 8px; }
+.welcome p { font-size: 13px; line-height: 1.6; }
+
+/* Suggestion buttons */
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 16px 8px;
+  justify-content: center;
+}
+.suggestions button {
+  background: #f0f4ff;
+  border: 1px solid #d0d8f0;
+  color: var(--primary);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.suggestions button:hover { background: #e0e8ff; }
+
+/* Input area */
+.input-area {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--card);
+  flex-shrink: 0;
+}
+.input-area input {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 10px 16px;
+  font-size: 14px;
+  outline: none;
+  transition: border .2s;
+}
+.input-area input:focus { border-color: var(--primary); }
+.input-area button {
+  width: 40px; height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .2s;
+  flex-shrink: 0;
+}
+.input-area button:disabled { opacity: .4; cursor: not-allowed; }
+
+/* Loading dots */
+.msg.bot .loading-dots { display: inline-flex; gap: 3px; }
+.msg.bot .loading-dots span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #999;
+  animation: dotPulse 1.2s ease-in-out infinite;
+}
+.msg.bot .loading-dots span:nth-child(2) { animation-delay: .2s; }
+.msg.bot .loading-dots span:nth-child(3) { animation-delay: .4s; }
+@keyframes dotPulse {
+  0%, 80%, 100% { transform: scale(.6); opacity: .3; }
+  40% { transform: scale(1); opacity: .8; }
+}
+
+/* Error */
+.msg.error {
+  align-self: flex-start;
+  background: #ffe0e0;
+  color: #c00;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="avatar">📊</div>
+    <div>
+      <h1>巴菲特 · 金融管家</h1>
+      <div class="sub">基于 OpenClaw · 随时为你服务</div>
+    </div>
+  </div>
+
+  <div class="messages" id="messages">
+    <div class="welcome" id="welcome">
+      <div class="icon">🦞</div>
+      <h2>你好，我是巴菲特 👋</h2>
+      <p>你的 AI 金融管家。<br>问我关于股市、财经、投资的问题，<br>我会给你简洁、严谨的分析。</p>
+    </div>
+    <div class="suggestions" id="suggestions">
+      <button onclick="ask('今日大盘怎么样？')">今日大盘</button>
+      <button onclick="ask('有什么热点新闻？')">热点新闻</button>
+      <button onclick="ask('分析一下半导体板块')">分析半导体</button>
+      <button onclick="ask('沪深300怎么看？')">沪深300</button>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <input type="text" id="input" placeholder="输入问题…" autofocus
+      onkeydown="if(event.key==='Enter') send()">
+    <button id="sendBtn" onclick="send()">➤</button>
+  </div>
+</div>
+
+<script>
+const messagesEl = document.getElementById('messages');
+const welcomeEl = document.getElementById('welcome');
+const suggestionsEl = document.getElementById('suggestions');
+const input = document.getElementById('input');
+const sendBtn = document.getElementById('sendBtn');
+
+let conversationHistory = [];
+let streaming = false;
+
+function addMessage(content, type, isStreaming) {
+  // Remove welcome on first message
+  welcomeEl.style.display = 'none';
+  suggestionsEl.style.display = 'none';
+
+  let msgEl = document.querySelector('.msg.streaming');
+  if (isStreaming && msgEl) {
+    msgEl.textContent = content;
+    return msgEl;
+  }
+
+  // Remove streaming indicator if final
+  if (!isStreaming) {
+    document.querySelector('.msg.streaming')?.classList.remove('streaming');
+  }
+
+  msgEl = document.createElement('div');
+  msgEl.className = `msg ${type}` + (isStreaming ? ' streaming' : '');
+  msgEl.textContent = content;
+
+  // Add timestamp for non-streaming messages
+  if (!isStreaming) {
+    const time = document.createElement('div');
+    time.className = 'time';
+    time.textContent = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+    msgEl.appendChild(time);
+  }
+
+  messagesEl.appendChild(msgEl);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+  return msgEl;
+}
+
+async function send() {
+  const text = input.value.trim();
+  if (!text || streaming) return;
+  input.value = '';
+  streamMessage(text);
+}
+
+function ask(text) {
+  input.value = text;
+  send();
+}
+
+async function streamMessage(text) {
+  streaming = true;
+  sendBtn.disabled = true;
+  input.disabled = true;
+
+  // Show user message
+  addMessage(text, 'user');
+
+  // Show bot's streaming message
+  addMessage('', 'bot', true);
+
+  try {
+    const res = await fetch('/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text, history: conversationHistory })
+    });
+
+    if (!res.ok) {
+      const err = await res.text();
+      addMessage(`请求失败: ${err}`, 'error');
+      conversationHistory = [];
+      return;
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let fullContent = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      const chunk = decoder.decode(value, { stream: true });
+      const lines = chunk.split('\n');
+
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed.startsWith('data: ')) continue;
+        const payload = trimmed.slice(6);
+        if (payload === '[DONE]') {
+          // Finalize
+          const msgEl = document.querySelector('.msg.streaming');
+          if (msgEl) {
+            msgEl.classList.remove('streaming');
+            const time = document.createElement('div');
+            time.className = 'time';
+            time.textContent = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+            msgEl.appendChild(time);
+          }
+          break;
+        }
+        try {
+          const parsed = JSON.parse(payload);
+          if (parsed.error) {
+            addMessage(parsed.error, 'error');
+            break;
+          }
+          if (parsed.content) {
+            fullContent += parsed.content;
+            const msgEl = document.querySelector('.msg.streaming');
+            if (msgEl) msgEl.textContent = fullContent;
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+          }
+        } catch { /* skip */ }
+      }
+    }
+
+    if (fullContent) {
+      conversationHistory.push({ role: 'user', content: text });
+      conversationHistory.push({ role: 'assistant', content: fullContent });
+      // Keep history manageable
+      if (conversationHistory.length > 20) {
+        conversationHistory = conversationHistory.slice(-20);
+      }
+    }
+  } catch (err) {
+    addMessage(`连接失败: ${err.message}`, 'error');
+    // Remove the empty streaming message
+    document.querySelector('.msg.streaming')?.remove();
+    conversationHistory = [];
+  } finally {
+    streaming = false;
+    sendBtn.disabled = false;
+    input.disabled = false;
+    input.focus();
+  }
+}
+</script>
+</body>
+</html>

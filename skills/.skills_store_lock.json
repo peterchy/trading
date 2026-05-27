@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "skills": {
+    "proactive-agent": {
+      "name": "Proactive Agent",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=proactive-agent",
+      "source": "skillhub",
+      "version": "3.1.0"
+    },
+    "gog": {
+      "name": "Gog",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=gog",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "self-improving-agent": {
+      "name": "self-improving-agent",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=self-improving-agent",
+      "source": "skillhub",
+      "version": "1.0.11"
+    },
+    "slack": {
+      "name": "Slack",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=slack",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "summarize": {
+      "name": "Summarize",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=summarize",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "notion": {
+      "name": "Notion",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=notion",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "agent-memory": {
+      "name": "Agent Memory",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=agent-memory",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "memory": {
+      "name": "Memory",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=memory",
+      "source": "skillhub",
+      "version": "1.0.2"
+    },
+    "exa": {
+      "name": "Exa",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=exa",
+      "source": "skillhub",
+      "version": "0.0.2"
+    },
+    "filesystem": {
+      "name": "Filesystem",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=filesystem",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "browser-use": {
+      "name": "Browser Use",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=browser-use",
+      "source": "skillhub",
+      "version": "1.0.2"
+    },
+    "sequential-thinking": {
+      "name": "Sequential Thinking",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=sequential-thinking",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "discord": {
+      "name": "Discord",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=discord",
+      "source": "skillhub",
+      "version": "1.0.1"
+    },
+    "ontology": {
+      "name": "Ontology",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=ontology",
+      "source": "skillhub",
+      "version": "0.1.2"
+    },
+    "topnews": {
+      "name": "股票舆情智能AI助手",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=topnews",
+      "source": "skillhub",
+      "version": "1.0.1"
+    },
+    "market-sentiment-radar": {
+      "name": "Market Sentiment Radar",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=market-sentiment-radar",
+      "source": "skillhub",
+      "version": "1.3.0"
+    },
+    "mx-finance-search": {
+      "name": "Financial Search Engine",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=mx-finance-search",
+      "source": "skillhub",
+      "version": "1.0.6"
+    },
+    "akshare-stock": {
+      "name": "A股量化 AkShare",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=akshare-stock",
+      "source": "skillhub",
+      "version": "1.0.1"
+    },
+    "a-stock-fundamental-screening": {
+      "name": "A股基本面筛选",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=a-stock-fundamental-screening",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "valuation-analysis": {
+      "name": "股票价值投资分析系统",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=valuation-analysis",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "ticai-lieshou": {
+      "name": "股票题材猎手 Stock Catalyst Hunter",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=ticai-lieshou",
+      "source": "skillhub",
+      "version": "1.0.6"
+    },
+    "stock-board": {
+      "name": "股票打板筛选",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=stock-board",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "finance-news-pro": {
+      "name": "财经新闻深度分析技能",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=finance-news-pro",
+      "source": "skillhub",
+      "version": "1.0.1"
+    },
+    "stock-analyst": {
+      "name": "股票分析",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=stock-analyst",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "a-stocks-analysis": {
+      "name": "A股-股市分析和投资顾问",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=a-stocks-analysis",
+      "source": "skillhub",
+      "version": "0.2.2"
+    },
+    "a-share-short-decision": {
+      "name": "A股短线交易决策 A Share Short Term Decision",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=a-share-short-decision",
+      "source": "skillhub",
+      "version": "1.2.0"
+    },
+    "a-stock-market-sentiment": {
+      "name": "A股市场情绪量化",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=a-stock-market-sentiment",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "yuheng-html-report": {
+      "name": "Html Report Generator",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=yuheng-html-report",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "dataease": {
+      "name": "DataEase",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=dataease",
+      "source": "skillhub",
+      "version": "1.1.0"
+    }
+  }
+}
