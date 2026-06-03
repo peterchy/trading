@@ -13,9 +13,9 @@ __pycache__/
 Thumbs.db
 
 # 个人数据（不推送）
+# 个人数据（不推送到公开场景，但选股策略除外）
 MEMORY.md
 USER.md
 TOOLS.md
 HEARTBEAT.md
 memory/
-选股策略.md
